@@ -35,7 +35,7 @@ post '/dns' do
   IO.popen("nsupdate -y #{dns_params[:rndc_key]}:#{dns_params[:rndc_secret]} -v", 'r+') do |f|
     f << <<-EOF
       server #{dns_params[:server]}
-      update add #{request_params["hostname"]} #{ttl} #{request_params["type"]} #{request_params["value"]}
+      update add #{request_params["hostname"]} #{ttl} A #{request_params["value"]}
       send
       send
     EOF
